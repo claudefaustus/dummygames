@@ -55,7 +55,8 @@ class Player(object):
         self.sushi = sushi
         self.stomach.append(sushi)
         self.points += 1
-        print self.stomach
+        for x in self.stomach:
+            print x
         print self.points
         
 class Sushi(object):

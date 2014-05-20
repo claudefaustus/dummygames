@@ -66,6 +66,53 @@ class Sushi(object):
     def __str__(self):
         return self.name
        
+       
+class Player(object): 
+    def __init__(self, player, stomach, bladder, points): 
+        self.player = player
+        self.stomach = stomach
+        self.points = points
+        self.bladder = bladder
+
+
+    def eat(self, sushi):
+        self.sushi = sushi
+        self.stomach.append(sushi)
+        self.points += sushi.points
+        for x in self.stomach:
+            print "you have eaten %s" % x
+        print "you have %d points" % self.points
+        
+    def drink(self, beer):
+        self.beer = beer
+        self.bladder.append(beer)
+        for x in self.bladder:
+            print "you have drunk %s" % x
+        
+class Sushi(object):
+    def __init__(self, name, points):
+        self.name = name
+        self.points = points
+    def __str__(self):
+        return self.name
+        
+class Beer(object):
+    def __init__(self, name):
+        self.name = name
+    def __str__(self):
+        return self.name
+       
+   
+l = []
+maki = Sushi("maki", 5)
+spiderroll = Sushi("spider roll", 7)
+sapporo = Beer("Sapporo")
+Conan = Player("Conan", l, l, 0)
+Conan.eat(maki)
+Conan.eat(spiderroll)
+Conan.drink(sapporo)
+
+
    
    
    

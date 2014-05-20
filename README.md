@@ -1,4 +1,7 @@
-dummygames
-==========
+$ mkdir ~/dummygames
 
-a bunch of python learning games
+$ cd ~/dummygames
+
+$ git init
+
+$ touch README

@@ -21,6 +21,7 @@ class Player(object): # contains stored points of player 1 and player 2
         self.stomach.append(sushi)
         self.points += 1
    
+   
 class Beer(Food): # contains the beer
     def __init__(self, drink): # drink is the individual beer
         self.drink = drink

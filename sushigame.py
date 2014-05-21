@@ -44,7 +44,7 @@ class Edamame(SushiDish):
 
 
 
-class Player(object): 
+"""class Player(object): 
     def __init__(self, player, stomach, points): 
         self.player = player
         self.stomach = stomach
@@ -64,15 +64,16 @@ class Sushi(object):
         self.name = name
         self.points = points
     def __str__(self):
-        return self.name
+        return self.name """
        
        
 class Player(object): 
-    def __init__(self, player, stomach, bladder, points): 
-        self.player = player
+    def __init__(self, name, stomach, bladder, points, drunkenness): 
+        self.name = name
         self.stomach = stomach
         self.points = points
         self.bladder = bladder
+        self.drunkenness = drunkenness
 
 
     def eat(self, sushi):
@@ -80,14 +81,17 @@ class Player(object):
         self.stomach.append(sushi)
         self.points += sushi.points
         for x in self.stomach:
-            print "you have eaten %s" % x
-        print "you have %d points" % self.points
+            print "%s has eaten %s" % (self.name, x)
+        print "%s has %d points" % (self.name, self.points)
         
     def drink(self, beer):
         self.beer = beer
         self.bladder.append(beer)
+        self.drunkenness += beer.drunkpoints
         for x in self.bladder:
-            print "you have drunk %s" % x
+            print "%s has drunk %s" % (self.name, x)
+        print "%s is %d percent drunk" % (self.name, self.drunkenness)
+            
         
 class Sushi(object):
     def __init__(self, name, points):
@@ -97,27 +101,27 @@ class Sushi(object):
         return self.name
         
 class Beer(object):
-    def __init__(self, name):
+    def __init__(self, name, drunkpoints):
         self.name = name
+        self.drunkpoints = drunkpoints
     def __str__(self):
         return self.name
        
    
-l = []
+stom = [] # empty list for stomach  this list should be created in Player for each player rather than being stored here.
+blad = [] # empty list for player bladder this list should be created in Player rather than being stored here.
+
+edamame = Sushi("edamame", 1)
 maki = Sushi("maki", 5)
 spiderroll = Sushi("spider roll", 7)
-sapporo = Beer("Sapporo")
-Conan = Player("Conan", l, l, 0)
+rainbowroll = Sushi("rainbow roll", 10)
+
+sapporo = Beer("Sapporo", 20)
+
+Conan = Player("Conan", stom, blad, 0, 0)
+claude = Player("Claude", stom, blad, 0, 0)
+
 Conan.eat(maki)
 Conan.eat(spiderroll)
 Conan.drink(sapporo)
-
-
-   
-   
-   
-l = []
-maki = Sushi("maki", 5)
-Conan = Player("Conan", l, 0)
-Conan.eat(maki)
-
+claude.drink(sapporo)

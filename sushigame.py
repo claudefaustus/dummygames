@@ -75,7 +75,12 @@ class Player(object):
         self.points = points
         self.bladder = bladder
         self.drunkenness = drunkenness
-
+        
+    def create_organs(self):
+        if self.stomach == -10:
+            self.stomach = []
+        if self.bladder == -10:
+            self.bladder = []
 
     def eat(self, sushi):
         self.sushi = sushi
@@ -83,7 +88,7 @@ class Player(object):
         self.points += sushi.points
         for x in self.stomach:
             print "%s has eaten %s" % (self.name, x)
-        print "%s has %d points" % (self.name, self.points)
+        print "%s has %d fullness points" % (self.name, self.points)
         
     def drink(self, beer):
         self.beer = beer
@@ -109,8 +114,6 @@ class Beer(object):
         return self.name
        
    
-stom = [] # empty list for stomach  this list should be created in Player for each player rather than being stored here.
-blad = [] # empty list for player bladder this list should be created in Player rather than being stored here.
 
 edamame = Sushi("edamame", 1)
 maki = Sushi("maki", 5)
@@ -119,10 +122,15 @@ rainbowroll = Sushi("rainbow roll", 10)
 
 sapporo = Beer("Sapporo", 20)
 
-Conan = Player("Conan", stom, blad, 0, 0)
-claude = Player("Claude", stom, blad, 0, 0)
+conan = Player("Conan", -10, -10, 0, 0)
+conan.create_organs()
 
-Conan.eat(maki)
-Conan.eat(spiderroll)
-Conan.drink(sapporo)
+claude = Player("Claude", -10, -10, 0, 0)
+claude.create_organs()
+
+conan.eat(maki)
+conan.eat(spiderroll)
+conan.drink(sapporo)
 claude.drink(sapporo)
+claude.eat(rainbowroll)
+

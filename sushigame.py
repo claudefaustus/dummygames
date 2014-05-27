@@ -68,7 +68,7 @@ class Sushi(object):
         return self.name """
        
        
-class Player(object): 
+"""class Player(object): 
     def __init__(self, name, stomach, bladder, points, drunkenness): 
         self.name = name
         self.stomach = stomach
@@ -132,5 +132,86 @@ conan.eat(maki)
 conan.eat(spiderroll)
 conan.drink(sapporo)
 claude.drink(sapporo)
-claude.eat(rainbowroll)
+claude.eat(rainbowroll)"""
+
+
+class Player(object): 
+    def __init__(self, name): 
+        self.name = name
+        self.stomach = []
+        self.points = 0
+        self.bladder = []
+        self.drunkenness = 0
+        
+    def vomit(self):
+        self.points = 0
+        self.drunkenness = 0
+        self.bladder = []
+        self.stomach = []
+        
+    def get_happy(self, points, drunkenness):
+        if self.points >= 20 and self.points <= 100 and self.drunkenness >= 30 and self.drunkenness <= 50:
+            print "%s has achieved happiness" % self.name
+        elif self.points < 20 and self.points > 0:
+            print "%s is still hungry" % self.name
+        elif self.points > 100:
+            return self.vomit
+            print "%s has eaten too much and vomited" % self.name
+        elif self.drunkenness < 30 and self.drunkenness > 0:
+            print "%s still wants more beer." % self.name
+        elif self.drunkenness > 50:
+            return self.vomit
+            print "%s has overdone it with the beer and vomited" % self.name
+        elif self.drunkenness == 0:
+            print "%s wants beer" % (self.name)
+        elif self.points == 0:
+            print "%s is hungry." % (self.name)
+
+    def eat(self, sushi):
+        self.sushi = sushi
+        self.stomach.append(sushi)
+        self.points += sushi.points
+        for x in self.stomach:
+            print "%s has eaten %s" % (self.name, x)
+        print "%s has %d fullness points" % (self.name, self.points)
+        self.get_happy
+        
+    def drink(self, beer):
+        self.beer = beer
+        self.bladder.append(beer)
+        self.drunkenness += beer.drunkpoints
+        for x in self.bladder:
+            print "%s has drunk %s" % (self.name, x)
+        print "%s is %d percent drunk" % (self.name, self.drunkenness)
+        self.get_happy    
+        
+class Sushi(object):
+    def __init__(self, name, points):
+        self.name = name
+        self.points = points
+    def __str__(self):
+        return self.name
+        
+class Beer(object):
+    def __init__(self, name, drunkpoints):
+        self.name = name
+        self.drunkpoints = drunkpoints
+    def __str__(self):
+        return self.name
+       
+edamame = Sushi("edamame", 1)
+maki = Sushi("maki", 5)
+spiderroll = Sushi("spider roll", 7)
+rainbowroll = Sushi("rainbow roll", 100)
+
+sapporo = Beer("Sapporo", 20)
+
+conan = Player("Conan")
+
+claude = Player("Claude")
+
+conan.eat(maki)
+conan.eat(rainbowroll)
+conan.eat(rainbowroll)
+conan.get_happy(205, 0)
 

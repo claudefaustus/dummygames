@@ -142,6 +142,7 @@ class Player(object):
         self.points = 0
         self.bladder = []
         self.drunkenness = 0
+        self.happiness = 0
         
     def vomit(self):
         self.points = 0
@@ -149,23 +150,40 @@ class Player(object):
         self.bladder = []
         self.stomach = []
         
-    def get_happy(self, points, drunkenness):
+    def get_happy(self):
         if self.points >= 20 and self.points <= 100 and self.drunkenness >= 30 and self.drunkenness <= 50:
-            print "%s has achieved happiness" % self.name
+            happiness == 10
         elif self.points < 20 and self.points > 0:
-            print "%s is still hungry" % self.name
+            happiness == 4
         elif self.points > 100:
-            return self.vomit
-            print "%s has eaten too much and vomited" % self.name
+            happiness == 12
         elif self.drunkenness < 30 and self.drunkenness > 0:
-            print "%s still wants more beer." % self.name
+            happiness == 6
         elif self.drunkenness > 50:
-            return self.vomit
-            print "%s has overdone it with the beer and vomited" % self.name
+            happiness == 11
         elif self.drunkenness == 0:
-            print "%s wants beer" % (self.name)
+            happiness == -1
         elif self.points == 0:
-            print "%s is hungry." % (self.name)
+            happiness == 0
+
+    def print_happy(self):
+        if happiness = 10:
+            print "%s has achieved happiness" % self.name
+        elif happiness = 4:
+            print "%s is still hungry" % self.name
+        elif happiness = 12:
+            print "%s has eaten too much and vomited" % self.name
+            return self.vomit
+        elif happiness = 6:
+            print "%s still wants more beer." % self.name
+        elif happiness = 11:
+            print "%s has drank too much beer and vomited" % self.name
+            return self.vomit
+        elif happiness = -1:
+            print "%s wants beer" % (self.name)
+        elif happiness = 0:
+            print "%s is hungry" % (self.name)
+            
 
     def eat(self, sushi):
         self.sushi = sushi
@@ -213,5 +231,7 @@ claude = Player("Claude")
 conan.eat(maki)
 conan.eat(rainbowroll)
 conan.eat(rainbowroll)
-conan.get_happy(205, 0)
+conan.drink(sapporo)
+conan.drink(sapporo)
+conan.eat(edamame)
 

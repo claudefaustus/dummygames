@@ -152,36 +152,36 @@ class Player(object):
         
     def get_happy(self):
         if self.points >= 20 and self.points <= 100 and self.drunkenness >= 30 and self.drunkenness <= 50:
-            happiness == 10
+            happiness = 10
         elif self.points < 20 and self.points > 0:
-            happiness == 4
+            happiness = 4
         elif self.points > 100:
-            happiness == 12
+            happiness = 12
         elif self.drunkenness < 30 and self.drunkenness > 0:
-            happiness == 6
+            happiness = 6
         elif self.drunkenness > 50:
-            happiness == 11
+            happiness = 11
         elif self.drunkenness == 0:
-            happiness == -1
+            happiness = -1
         elif self.points == 0:
-            happiness == 0
+            happiness = 0
 
     def print_happy(self):
-        if happiness = 10:
+        if happiness == 10:
             print "%s has achieved happiness" % self.name
-        elif happiness = 4:
+        elif happiness == 4:
             print "%s is still hungry" % self.name
-        elif happiness = 12:
+        elif happiness == 12:
             print "%s has eaten too much and vomited" % self.name
             return self.vomit
-        elif happiness = 6:
+        elif happiness == 6:
             print "%s still wants more beer." % self.name
-        elif happiness = 11:
+        elif happiness == 11:
             print "%s has drank too much beer and vomited" % self.name
             return self.vomit
-        elif happiness = -1:
+        elif happiness == -1:
             print "%s wants beer" % (self.name)
-        elif happiness = 0:
+        elif happiness == 0:
             print "%s is hungry" % (self.name)
             
 
@@ -189,10 +189,10 @@ class Player(object):
         self.sushi = sushi
         self.stomach.append(sushi)
         self.points += sushi.points
-        for x in self.stomach:
-            print "%s has eaten %s" % (self.name, x)
+        print "%s has eaten %s" % (self.name, self.stomach[-1])
         print "%s has %d fullness points" % (self.name, self.points)
         self.get_happy
+        self.print_happy
         
     def drink(self, beer):
         self.beer = beer
@@ -201,7 +201,8 @@ class Player(object):
         for x in self.bladder:
             print "%s has drunk %s" % (self.name, x)
         print "%s is %d percent drunk" % (self.name, self.drunkenness)
-        self.get_happy    
+        self.get_happy
+        self.print_happy
         
 class Sushi(object):
     def __init__(self, name, points):
@@ -234,4 +235,7 @@ conan.eat(rainbowroll)
 conan.drink(sapporo)
 conan.drink(sapporo)
 conan.eat(edamame)
+conan.get_happy
+conan.print_happy
+
 
